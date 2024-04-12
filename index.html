@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    function checking() {
+      event.preventDefault();
+      let num = document.getElementById("no").value;
+      const numStr = num.toString();
+      const n = numStr.length;
+      let summ = 0;
+      for (let digit of numStr) {
+        summ += Math.pow(parseInt(digit), n);
+      }
+      console.log(summ);
+      console.log(num);
+      if (summ == num) {
+        const result2 = document.getElementById("result2");
+        result2.innerHTML = `${num} is Armstrong no `;
+      } else {
+        const result2 = document.getElementById("result2");
+        result2.innerHTML = `${num} ,is not an Armstrong no `;
+      }
+      //prime no
+      if (num == 1 || num == 2) {
+        const result3 = document.getElementById("result3");
+        result3.innerHTML = `${num} is a prime no.`;
+      } else if (
+        num % 2 == 0 ||
+        num % 3 == 0 ||
+        num % 5 == 0 ||
+        num % 17 == 0
+      ) {
+        const result3 = document.getElementById("result3");
+        result3.innerHTML = `${num} is not a prime no.`;
+      } else {
+        const result3 = document.getElementById("result3");
+        result3.innerHTML = `${num}  is a prime no.`;
+      }
+      //factors
+      if (num <= 0) {
+        return [];
+        const result4 = document.getElementById("result4");
+        result4.innerHTML = `No factors `;
+      }
+
+      const factors = [];
+
+      for (let i = 1; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          // i is a divisor of num, so add i to factors
+          factors.push(i);
+
+          // If i is not the square root of num, then num/i is also a divisor
+          if (i !== num / i) {
+            factors.push(num / i);
+          }
+        }
+      }
+
+      // Sort the factors array in ascending order (optional)
+      factors.sort((a, b) => a - b);
+       if(factors){
+        const result4 = document.getElementById("result4");
+      result4.innerHTML = `Factors are : ${factors}`;
+       }
+     
+
+      console.log(num);
+      let sum = 0;
+      let digit;
+      while (num > 0) {
+        digit = num % 10;
+        sum += digit;
+        num = Math.floor(num / 10);
+      }
+      console.log(digit);
+      const result1 = document.getElementById("result1");
+      result1.innerHTML = `The sum of digits is : ${sum}`;
+    }
+  </script>
+  <body>
+    <h1>checking whether its Armstrong or not</h1>
+    <form>
+      <label>Enter no here</label>
+      <input id="no" type="number" placeholder="enter no" />
+      <button onclick="checking()">Check</button>
+    </form>
+    <h3 id="result1"></h3>
+    <h3 id="result2"></h3>
+    <h3 id="result3"></h3>
+    <h3 id="result4"></h3>
+  </body>
+</html>
